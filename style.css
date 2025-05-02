@@ -1,0 +1,305 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #f3f4f6;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Fixed container styling */
+.container {
+  width: 100%;
+  min-width: 1000px; /* Ensure minimum width to prevent squishing */
+}
+
+/* Ensure scrollable container keeps fixed width items */
+#stores-scroll-container {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+  min-width: 600px; /* Provide a minimum width */
+}
+
+#scrollable-header > div,
+#scrollable-products-container > div > div {
+  flex-shrink: 0; /* Prevent store boxes from shrinking */
+  min-width: 230px; /* Match the width of the store boxes */
+  width: 230px; /* Fixed width */
+}
+
+#stores-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+#stores-scroll-container::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 4px;
+}
+
+#stores-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
+
+#fixed-header,
+#scrollable-header {
+  min-width: max-content;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#scrollable-header {
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+/* Add draggable styling to store headers */
+.store-header {
+  cursor: grab;
+  user-select: none;
+  position: relative;
+  transition: transform 0.2s ease;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.store-header:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.store-header.dragging {
+  cursor: grabbing;
+  transform: scale(1.02);
+  z-index: 100;
+  opacity: 0.9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.drag-handle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  color: #9ca3af;
+  font-size: 10px;
+  opacity: 0.7;
+  padding: 2px;
+}
+
+.store-header:hover .drag-handle {
+  opacity: 1;
+}
+
+.sortable-ghost {
+  opacity: 0.4;
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+.sortable-chosen {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.sortable-drag {
+  opacity: 0.9;
+  z-index: 1000;
+}
+
+#fixed-products-container,
+#scrollable-products-container {
+  background-color: #f3f4f6;
+}
+
+.product-row {
+  height: 100%;
+}
+
+/* Ensure both sides align perfectly */
+#fixed-products-container > div,
+#scrollable-products-container > div {
+  margin-bottom: 0.25rem;
+  height: 128px; /* Fixed height to ensure alignment */
+}
+
+.date-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  margin-right: 4px;
+}
+
+.trend-chart {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Infinite scrolling styles */
+#infinite-scroll-sentinel {
+  width: 100%;
+  height: 10px;
+  clear: both;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  }
+  #stores-scroll-container {
+    scrollbar-color: #4b5563 #1f2937;
+  }
+  #stores-scroll-container::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+  #stores-scroll-container::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+  }
+}
+
+
+/* Main Styles for Product Comparison Widget */
+
+/* Filtreleme stillerini geliştirme */
+#brand-filter:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* Toggle switch animasyonu */
+#toggle-knob {
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Sürükle-bırak işaretçisi */
+.drag-handle {
+  cursor: grab;
+  margin-right: 10px;
+  padding: 2px 5px;
+  color: #9ca3af;
+}
+
+.drag-handle:hover {
+  color: #6b7280;
+}
+
+.dragging {
+  opacity: 0.8;
+  background-color: #f3f4f6;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.store-header {
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.store-header:hover {
+  background-color: #f9fafb;
+}
+
+/* Store box stilleri */
+.store-box {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.store-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* NO DATA kutularını belirginleştirme */
+.store-box[data-no-data="true"],
+.no-data-box {
+  opacity: 0.75;
+  background-color: #f9fafb;
+  position: relative;
+}
+
+.store-box[data-no-data="true"]::after,
+.no-data-box::after {
+  content: "NO DATA";
+  position: absolute;
+  top: 67%;
+  left: 40%;
+  transform: translate(-50%, -50%) rotate(-0deg);
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(239, 68, 68, 0.2);
+  border: 2px solid rgba(239, 68, 68, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Filtreleme animasyonu */
+#fixed-products-container > div,
+#scrollable-products-container > div {
+  transition: opacity 0.3s ease;
+}
+
+/* Yükleme göstergesi animasyonu */
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.load-more-trigger {
+  position: relative;
+}
+
+.load-more-trigger::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  animation: fadeInOut 2s infinite;
+  opacity: 0;
+}
+
+.load-more-trigger.loading::after {
+  opacity: 1;
+}
+
+/* Reset button hover efekti */
+#reset-filters {
+  transition: background-color 0.2s ease;
+}
+
+#reset-filters:hover {
+  background-color: #e5e7eb;
+}
+
+/* Filtre bölümü hafif gölge */
+.filter-container {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Bildirimler için animasyon */
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.notification {
+  animation: slideIn 0.3s ease forwards;
+}

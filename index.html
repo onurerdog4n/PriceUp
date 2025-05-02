@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ürün Karşılaştırma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+      <!-- Filtreler -->
+      <div class="mb-4 flex items-center justify-between bg-white p-3 rounded-lg shadow-sm">
+        <div class="flex items-center">
+          <div class="mr-4">
+            <label for="brand-filter" class="block text-sm font-medium text-gray-700 mb-1">Marka Filtresi</label>
+            <input type="text" id="brand-filter" placeholder="Marka adı girin..." 
+              class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label class="flex items-center cursor-pointer">
+              <input type="checkbox" id="only-data-filter" class="sr-only">
+              <div class="relative w-10 h-5 bg-gray-200 rounded-full shadow-inner transition-colors duration-200 ease-in-out">
+                <div class="absolute w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-200 ease-in-out" id="toggle-knob"></div>
+              </div>
+              <span class="ml-2 text-sm font-medium text-gray-700">Sadece Verisi Olanlar</span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <button id="reset-filters" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-2 rounded-md text-sm">
+            <i class="fa-solid fa-times mr-1"></i>Filtreleri Temizle
+          </button>
+        </div>
+      </div>
+
+      <div class="flex ">
+        <!-- Fixed left side container -->
+        <div class="flex-none">
+          <!-- Fixed header for Product Info and SKU Lowest -->
+          <div id="fixed-header" class="flex mb-4 bg-gray-100">
+            <div class="w-[300px] min-w-[300px] flex-shrink-0 flex items-center justify-center p-2 mr-2">
+              <img src="https://www.pt.com.tr/wp-content/uploads/2019/01/pt-bilgi-sistemleri-logo.png" alt="PT" class="h-8">
+            </div>
+            <div class="w-[230px] min-w-[230px] flex-shrink-0 flex items-center justify-center p-2 mr-2">
+              <div class="text-lg font-bold">SKU Lowest</div>
+            </div>
+          </div>
+          
+          <!-- Fixed Products left side container -->
+          <div id="fixed-products-container">
+            <!-- Product info and SKU lowest will be rendered here -->
+          </div>
+        </div>
+        
+        <!-- Scrollable right side container -->
+        <div class="flex-grow overflow-x-auto" id="stores-scroll-container">
+          <!-- Scrollable header for stores -->
+          <div id="scrollable-header" class="flex mb-4 bg-gray-100">
+            <!-- Store headers will be added dynamically -->
+          </div>
+          
+          <!-- Scrollable Products stores container -->
+          <div id="scrollable-products-container">
+            <!-- Store boxes will be rendered here -->
+          </div>
+        </div>
+      </div>
+    
+    </div>
+    <div class="loadProduct">
+        
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
